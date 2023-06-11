@@ -15,13 +15,7 @@ const providerOpenAI = () => {
         name: 'API Key',
         type: 'api-key',
       },
-      {
-        key: 'baseUrl',
-        name: 'Base URL',
-        description: 'Custom base url for OpenAI API.',
-        type: 'input',
-        default: 'https://api.openai.com',
-      },
+
       {
         key: 'model',
         name: 'OpenAI model',
@@ -35,7 +29,7 @@ const providerOpenAI = () => {
           { value: 'gpt-4-32k-0314', label: 'gpt-4-32k-0314' },
           { value: 'gpt-3.5-turbo-0301', label: 'gpt-3.5-turbo-0301' },
         ],
-        default: 'gpt-3.5-turbo',
+        default: 'gpt-4',
       },
       {
         key: 'maxTokens',
@@ -53,7 +47,7 @@ const providerOpenAI = () => {
         type: 'slider',
         description: 'What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.',
         min: 0,
-        max: 2,
+        max: 1,
         default: 0.7,
         step: 0.01,
       },

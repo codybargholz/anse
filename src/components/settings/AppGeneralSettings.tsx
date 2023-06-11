@@ -22,11 +22,15 @@ export default (props: Props) => {
       default: false,
     },
     {
+      /*
+    {
       key: 'locale',
       name: t('settings.general.locale'),
       type: 'select',
       default: 'en',
       options: localesOptions,
+    },
+    */
     },
   ] as SettingsUI[])
 

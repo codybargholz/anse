@@ -36,6 +36,8 @@ export default () => {
           )}
         </For>
       </main>
+      {
+      /*
       <footer class="h-14 fi justify-between px-3">
         <ThemeToggle />
         <div text-xs op-40 px-2>
@@ -48,6 +50,8 @@ export default () => {
           </a>
         </div>
       </footer>
+      */
+      }
     </div>
   )
 }
