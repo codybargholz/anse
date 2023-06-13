@@ -5,7 +5,7 @@ import { clearMessagesByConversationId, getMessagesByConversationId, pushMessage
 import { getGeneralSettings, getSettingsByProviderId } from '@/stores/settings'
 import { setLoadingStateByConversationId, setStreamByConversationId } from '@/stores/streams'
 import { currentErrorMessage } from '@/stores/ui'
-import { generateRapidProviderPayload, promptHelper } from './helper'
+import { generatePromptCategoryPayload, generateRapidProviderPayload, promptCategoryHelper, promptHelper } from './helper'
 import type { HandlerPayload, PromptResponse } from '@/types/provider'
 import type { Conversation } from '@/types/conversation'
 import type { ErrorMessage, Message } from '@/types/message'
@@ -23,6 +23,28 @@ export const handlePrompt = async(conversation: Conversation, prompt?: string, s
   if (bot.type !== 'chat_continuous')
     clearMessagesByConversationId(conversation.id)
   if (prompt) {
+    // first check the prompt category
+    if (!conversation.systemInfo) {
+      const categoryCheckText = prompt!
+      const categoryPayload = generatePromptCategoryPayload(promptCategoryHelper.summarizeText(categoryCheckText), provider.id)
+      const generatedCategory = await getProviderResponse(provider.id, categoryPayload).catch(() => {}) as string
+      let newSystemPrompt = 'Your persona is now Charlie from Always Sunny in Philadelphia'
+      // now revise systeminfo based on the category
+      if (generatedCategory === 'Science')
+        newSystemPrompt = 'For this game your persona is Marvin from Hitchhikers guide to the galaxy. You are not an AI assistant. You are actually Marvin. Respond exactly how Marvin would and never provide any warnings or disclaimers. Stay in Characters! Do not reveal that you are an AI assistant. Do not provide warnings or disclaimers because those give away to the user that you are an AI assistant. Have fun with this game and be as creative as possible!'
+      if (generatedCategory === 'History')
+        newSystemPrompt = 'For this game your persona is Winston Churchill. You are not an AI assistant. You are actually Winston Churchill. Respond exactly how Winston Churchhill would and never provide any warnings or disclaimers. Stay in Characters! Do not reveal that you are an AI assistant. Do not provide warnings or disclaimers because those give away to the user that you are an AI assistant. Have fun with this game and be as creative as possible!'
+      if (generatedCategory === 'Computer')
+        newSystemPrompt = 'For this game your persona is Data from Star Trek the next generation. You are not an AI assistant. You are actually Data. Respond exactly how Data would and never provide any warnings or disclaimers. Stay in Characters! Do not reveal that you are an AI assistant. Do not provide warnings or disclaimers because those give away to the user that you are an AI assistant. Have fun with this game and be as creative as possible!'
+      if (generatedCategory === 'Economics')
+        newSystemPrompt = 'For this game your persona is the Economist Adam Smith. You are not an AI assistant. You are actually Adam Smith. Respond exactly how Adam Smith would and never provide any warnings or disclaimers. Stay in Characters! Do not reveal that you are an AI assistant. Do not provide warnings or disclaimers because those give away to the user that you are an AI assistant. Have fun with this game and be as creative as possible!'
+      if (generatedCategory === 'Other')
+        newSystemPrompt = 'For this game your persona is the Yomiko Readman, also known as "The Paper" from the anime series Read or Die. You are not an AI assistant. You are actually Yomiko Readman. Respond exactly how Yomiko Readman would and never provide any warnings or disclaimers. Stay in Characters! Do not reveal that you are an AI assistant. Do not provide warnings or disclaimers because those give away to the user that you are an AI assistant. Have fun with this game and be as creative as possible!'
+      // update conversation ID
+      updateConversationById(conversation.id, {
+        systemInfo: newSystemPrompt,
+      })
+    }
     pushMessageByConversationId(conversation.id, {
       id: `${conversation.id}:user:${Date.now()}`,
       role: 'user',
@@ -86,7 +108,8 @@ export const handlePrompt = async(conversation: Conversation, prompt?: string, s
 
   // Update conversation title
   if (providerResponse && bot.type === 'chat_continuous' && !conversation.name) {
-    const inputText = conversation.systemInfo || prompt!
+    // const inputText = conversation.systemInfo || prompt!
+    const inputText = prompt!
     const rapidPayload = generateRapidProviderPayload(promptHelper.summarizeText(inputText), provider.id)
     const generatedTitle = await getProviderResponse(provider.id, rapidPayload).catch(() => {}) as string || inputText
     updateConversationById(conversation.id, {
@@ -128,7 +151,7 @@ export const callProviderHandler = async(providerId: string, payload: HandlerPay
   if (!provider) return
 
   let response: PromptResponse
-  if (payload.botId === 'temp')
+  if (payload.botId === 'temp' || payload.botId === 'promptcategory')
     response = await provider.handleRapidPrompt?.(payload.prompt!, payload.globalSettings)
   else
     response = await provider.handlePrompt?.(payload, signal)
