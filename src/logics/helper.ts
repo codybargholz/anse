@@ -44,7 +44,7 @@ export const promptCategoryHelper = {
   summarizeText: (text: string) => {
     return [
       'Your job is to review the input and determine the context of the input. ',
-      'Based on the context of the input categorize it as Science, History, Computer, Economics or Other.',
+      'Based on the context of the input categorize it as Science, History, Computer, Economics, Charlie or Other.',
       'The output must be one word only. Do not add any other content.',
       'The purpose of this categorization is to determine which persona to activate',
       'If a name is reference respond with the cooresponding context category',
@@ -53,8 +53,10 @@ export const promptCategoryHelper = {
       'History: Winston Churchill',
       'Computer: Data',
       'Economics: Adam Smith',
-      'Other: Yomiko Readman "The Paper"',
+      'Charlie: Charlie',
+      'Other: Michelle',
       'The use of any of these names trumps all other context information',
+      'Charlie can only be activated when the user addresses you with the name Charlie',
       'The input is:',
       text,
     ].join('\n')
