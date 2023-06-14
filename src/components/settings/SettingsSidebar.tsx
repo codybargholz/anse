@@ -36,10 +36,10 @@ export default () => {
           )}
         </For>
       </main>
+      {
+      /*
       <footer class="h-14 fi justify-between px-3">
         <ThemeToggle />
-        {
-        /*
         <div text-xs op-40 px-2>
           <a href="https://docs.anse.app" target="_blank" rel="noreferrer" class="hv-foreground">
             Docs
@@ -49,9 +49,9 @@ export default () => {
             Github
           </a>
         </div>
-        */
-        }
       </footer>
+      */
+      }
     </div>
   )
 }
