@@ -34,29 +34,6 @@ export const handleRapidPrompt: Provider['handleRapidPrompt'] = async(prompt, gl
   return ''
 }
 
-export const handlePromptCategory: Provider['handlePromptCategory'] = async(prompt, globalSettings) => {
-  const promptCategoryPayload = {
-    conversationId: 'promptcategory',
-    conversationType: 'chat_single',
-    botId: 'promptcategory',
-    globalSettings: {
-      ...globalSettings,
-      model: 'gpt-3.5-turbo',
-      temperature: 0.0,
-      maxTokens: 2048,
-      top_p: 1,
-      stream: false,
-    },
-    botSettings: {},
-    prompt,
-    messages: [{ role: 'user', content: prompt }],
-  } as HandlerPayload
-  const result = await handleChatCompletion(promptCategoryPayload)
-  if (typeof result === 'string')
-    return result
-  return ''
-}
-
 const handleChatCompletion = async(payload: HandlerPayload, signal?: AbortSignal) => {
   const response = await fetchChatCompletion({
     apiKey: payload.globalSettings.apiKey as string,

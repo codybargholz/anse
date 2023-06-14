@@ -1,6 +1,5 @@
 import {
   handlePrompt,
-  handlePromptCategory,
   handleRapidPrompt,
 } from './handler'
 import type { Provider } from '@/types/provider'
@@ -85,7 +84,6 @@ const providerOpenAI = () => {
     ],
     handlePrompt,
     handleRapidPrompt,
-    handlePromptCategory,
   }
   return provider
 }

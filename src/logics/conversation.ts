@@ -5,7 +5,7 @@ import { clearMessagesByConversationId, getMessagesByConversationId, pushMessage
 import { getGeneralSettings, getSettingsByProviderId } from '@/stores/settings'
 import { setLoadingStateByConversationId, setStreamByConversationId } from '@/stores/streams'
 import { currentErrorMessage } from '@/stores/ui'
-import { generatePromptCategoryPayload, generateRapidProviderPayload, promptCategoryHelper, promptHelper } from './helper'
+import { generateRapidProviderPayload, promptHelper } from './helper'
 import type { HandlerPayload, PromptResponse } from '@/types/provider'
 import type { Conversation } from '@/types/conversation'
 import type { ErrorMessage, Message } from '@/types/message'
@@ -166,8 +166,7 @@ export const handlePrompt = async(conversation: Conversation, prompt?: string, s
 
   // Update conversation title
   if (providerResponse && bot.type === 'chat_continuous' && !conversation.name) {
-    // const inputText = conversation.systemInfo || prompt!
-    const inputText = prompt!
+    const inputText = conversation.systemInfo || prompt!
     const rapidPayload = generateRapidProviderPayload(promptHelper.summarizeText(inputText), provider.id)
     const generatedTitle = await getProviderResponse(provider.id, rapidPayload).catch(() => {}) as string || inputText
     updateConversationById(conversation.id, {
@@ -209,7 +208,7 @@ export const callProviderHandler = async(providerId: string, payload: HandlerPay
   if (!provider) return
 
   let response: PromptResponse
-  if (payload.botId === 'temp' || payload.botId === 'promptcategory')
+  if (payload.botId === 'temp')
     response = await provider.handleRapidPrompt?.(payload.prompt!, payload.globalSettings)
   else
     response = await provider.handlePrompt?.(payload, signal)
