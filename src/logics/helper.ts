@@ -26,37 +26,3 @@ export const promptHelper = {
     ].join('\n')
   },
 }
-
-export const generatePromptCategoryPayload = (prompt: string, providerId: string) => {
-  const payload = {
-    conversationId: 'promptcategory',
-    conversationType: 'chat_single',
-    botId: 'promptcategory',
-    globalSettings: getSettingsByProviderId(providerId),
-    botSettings: {},
-    prompt,
-    messages: [],
-  } as HandlerPayload
-  return payload
-}
-
-export const promptCategoryHelper = {
-  summarizeText: (text: string) => {
-    return [
-      'Your job is to review the input and determine the context of the input. ',
-      'Based on the context of the input categorize it as Science, History, Computer, Economics or Other.',
-      'The output must be one word only. Do not add any other content.',
-      'The purpose of this categorization is to determine which persona to activate',
-      'If a name is reference respond with the cooresponding context category',
-      'Here are the names associated with each context category:',
-      'Science: Marvin',
-      'History: Winston Churchill',
-      'Computer: Data',
-      'Economics: Adam Smith',
-      'Other: Yomiko Readman "The Paper"',
-      'The use of any of these names trumps all other context information',
-      'The input is:',
-      text,
-    ].join('\n')
-  },
-}
