@@ -40,6 +40,7 @@ const migrateConversationStoreIfNeeded = () => {
         systemInfo: conversation.systemInfo,
         mockMessages: conversation.mockMessages,
         lastUseTime: conversation.lastUseTime,
+        personalityName: conversation.personalityName,
       }
       conversationMap.setKey(conversation.id, newConversationData)
       db.setItem(conversation.id, newConversationData)

@@ -9,4 +9,5 @@ export interface Conversation {
   systemInfo?: string
   mockMessages?: string
   lastUseTime: number
+  personalityName?: string
 }

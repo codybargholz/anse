@@ -1,5 +1,5 @@
 import { For, Show } from 'solid-js/web'
-import { createSignal } from 'solid-js'
+import { createSignal, onMount } from 'solid-js'
 import { useStore } from '@nanostores/solid'
 import { useClipboardCopy } from '@/hooks'
 import { deleteMessageByConversationId, spliceMessageByConversationId, spliceUpdateMessageByConversationId } from '@/stores/messages'
@@ -22,6 +22,8 @@ interface Props {
 
 export default (props: Props) => {
   let inputRef: HTMLTextAreaElement
+
+  // const [icon, setIcon] = createSignal('')
   const $conversationMap = useStore(conversationMap)
 
   const [showRawCode, setShowRawCode] = createSignal(false)
@@ -32,6 +34,7 @@ export default (props: Props) => {
   const currentConversation = () => {
     return $conversationMap()[props.conversationId]
   }
+  const personalityName = currentConversation().personalityName
 
   const handleCopyMessageItem = () => {
     const [Iscopied, copy] = useClipboardCopy(props.message.content)
@@ -89,10 +92,27 @@ export default (props: Props) => {
   else
     setMenuList(menuList().filter(item => ['all', 'system'].includes(item.role!)))
 
+  // onMount(() => {
+  //  const conversation = $conversationMap()[props.conversationId]
+  //  if (conversation)
+  //    setIcon(conversation.personalityName)
+  // })
+
   const roleClass = {
-    system: 'bg-gradient-to-b from-gray-300 via-gray-200 to-gray-300',
-    user: 'bg-gradient-to-b from-gray-300 via-gray-200 to-gray-300',
-    assistant: 'bg-gradient-to-b from-[#fccb90] to-[#d57eeb]',
+    system: "background: url('/self.png'); background-size: cover; background-position: center;",
+    user: "background: url('/Monroe.png'); background-size: cover; background-position: center;",
+    assistant: personalityName === 'Marvin'
+      ? "background: url('/Marvin.png'); background-size: cover; background-repeat: no-repeat;"
+      : personalityName === 'Yomiko'
+        ? "background: url('/Yomiko.png'); background-size: cover; background-repeat: no-repeat;"
+        : personalityName === 'Charlie'
+          ? "background: url('/Charlie.jpg'); background-size: cover; background-repeat: no-repeat;"
+          : personalityName === 'Churchhill'
+            ? "background: url('/winston.png'); background-size: cover; background-repeat: no-repeat;"
+            : personalityName === 'AdamSmith'
+              ? "background: url('/adamsmith.png'); background-size: cover; background-repeat: no-repeat;"
+              : "background: url('/self.png'); background-size: cover; background-position: center;",
+
   }
 
   return (
@@ -104,6 +124,7 @@ export default (props: Props) => {
     >
       <div class="max-w-base flex gap-4 overflow-hidden">
         <div class={`shrink-0 w-7 h-7 rounded-md op-80 ${roleClass[props.message.role]}`} />
+        <div style={`${roleClass[props.message.role]}`} class="shrink-0 w-15 h-15 rounded-md op-80" />
         <div id="menuList-wrapper" class={`sm:hidden block absolute bottom-2 right-4 z-10 op-70 cursor-pointer ${isEditing() && '!hidden'}`}>
           <DropDownMenu menuList={menuList()}>
             <div class="text-xl i-carbon:overflow-menu-horizontal" />
