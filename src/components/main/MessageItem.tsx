@@ -1,5 +1,5 @@
 import { For, Show } from 'solid-js/web'
-import { createSignal, onMount } from 'solid-js'
+import { createSignal } from 'solid-js'
 import { useStore } from '@nanostores/solid'
 import { useClipboardCopy } from '@/hooks'
 import { deleteMessageByConversationId, spliceMessageByConversationId, spliceUpdateMessageByConversationId } from '@/stores/messages'
@@ -111,7 +111,19 @@ export default (props: Props) => {
             ? "background: url('/winston.png'); background-size: cover; background-repeat: no-repeat;"
             : personalityName === 'AdamSmith'
               ? "background: url('/adamsmith.png'); background-size: cover; background-repeat: no-repeat;"
-              : "background: url('/self.png'); background-size: cover; background-position: center;",
+              : personalityName === 'Steve Jobs'
+                ? "background: url('/stevejobs.png'); background-size: cover; background-repeat: no-repeat;"
+                : personalityName === 'Dennis Ritchie'
+                  ? "background: url('/dennisritchie.png'); background-size: cover; background-repeat: no-repeat;"
+                  : personalityName === 'Elon Musk'
+                    ? "background: url('/elon.png'); background-size: cover; background-repeat: no-repeat;"
+                    : personalityName === 'Hubert Dreyfus'
+                      ? "background: url('/bert.png'); background-size: cover; background-repeat: no-repeat;"
+                      : personalityName === 'Shirley Taylor'
+                        ? "background: url('/shirleytaylor.png'); background-size: cover; background-repeat: no-repeat;"
+                        : personalityName === 'Terry Wahls'
+                          ? "background: url('/terry.png'); background-size: cover; background-repeat: no-repeat;"
+                          : "background: url('/self.png'); background-size: cover; background-position: center;",
 
   }
 
