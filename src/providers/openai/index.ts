@@ -73,9 +73,10 @@ const providerOpenAI = () => {
       {
         id: 'chat_continuous',
         type: 'chat_continuous',
-        name: 'Continuous Chat',
+        name: 'Chat',
         settings: [],
       },
+      /*
       {
         id: 'chat_single',
         type: 'chat_single',
@@ -88,6 +89,7 @@ const providerOpenAI = () => {
         name: 'DALL·E',
         settings: [],
       },
+      */
     ],
     handlePrompt,
     handleRapidPrompt,

@@ -103,27 +103,33 @@ export default (props: Props) => {
     user: "background: url('/Monroe.png'); background-size: cover; background-position: center;",
     assistant: personalityName === 'Marvin'
       ? "background: url('/Marvin.png'); background-size: cover; background-repeat: no-repeat;"
-      : personalityName === 'Yomiko'
-        ? "background: url('/Yomiko.png'); background-size: cover; background-repeat: no-repeat;"
-        : personalityName === 'Charlie'
-          ? "background: url('/Charlie.jpg'); background-size: cover; background-repeat: no-repeat;"
-          : personalityName === 'Churchhill'
-            ? "background: url('/winston.png'); background-size: cover; background-repeat: no-repeat;"
-            : personalityName === 'AdamSmith'
-              ? "background: url('/adamsmith.png'); background-size: cover; background-repeat: no-repeat;"
-              : personalityName === 'Steve Jobs'
-                ? "background: url('/stevejobs.png'); background-size: cover; background-repeat: no-repeat;"
-                : personalityName === 'Dennis Ritchie'
-                  ? "background: url('/dennisritchie.png'); background-size: cover; background-repeat: no-repeat;"
-                  : personalityName === 'Elon Musk'
-                    ? "background: url('/elon.png'); background-size: cover; background-repeat: no-repeat;"
-                    : personalityName === 'Hubert Dreyfus'
-                      ? "background: url('/bert.png'); background-size: cover; background-repeat: no-repeat;"
-                      : personalityName === 'Shirley Taylor'
-                        ? "background: url('/shirleytaylor.png'); background-size: cover; background-repeat: no-repeat;"
-                        : personalityName === 'Terry Wahls'
-                          ? "background: url('/terry.png'); background-size: cover; background-repeat: no-repeat;"
-                          : "background: url('/self.png'); background-size: cover; background-position: center;",
+      : personalityName === 'Feynman'
+        ? "background: url('/Feynman.png'); background-size: cover; background-repeat: no-repeat;"
+        : personalityName === 'Barenboim'
+          ? "background: url('/Barenboim.jpg'); background-size: cover; background-repeat: no-repeat;"
+          : personalityName === 'Yomiko'
+            ? "background: url('/Yomiko.png'); background-size: cover; background-repeat: no-repeat;"
+            : personalityName === 'Charlie'
+              ? "background: url('/Charlie2.jpg'); background-size: cover; background-repeat: no-repeat;"
+              : personalityName === 'Sowell'
+                ? "background: url('/Sowell.jpg'); background-size: cover; background-repeat: no-repeat;"
+                : personalityName === 'Churchhill'
+                  ? "background: url('/winston.png'); background-size: cover; background-repeat: no-repeat;"
+                  : personalityName === 'AdamSmith'
+                    ? "background: url('/adamsmith.png'); background-size: cover; background-repeat: no-repeat;"
+                    : personalityName === 'Steve Jobs'
+                      ? "background: url('/stevejobs.png'); background-size: cover; background-repeat: no-repeat;"
+                      : personalityName === 'Dennis Ritchie'
+                        ? "background: url('/dennisritchie.png'); background-size: cover; background-repeat: no-repeat;"
+                        : personalityName === 'Elon Musk'
+                          ? "background: url('/elon.png'); background-size: cover; background-repeat: no-repeat;"
+                          : personalityName === 'Hubert Dreyfus'
+                            ? "background: url('/bert.png'); background-size: cover; background-repeat: no-repeat;"
+                            : personalityName === 'Shirley Taylor'
+                              ? "background: url('/shirleytaylor.png'); background-size: cover; background-repeat: no-repeat;"
+                              : personalityName === 'Terry Wahls'
+                                ? "background: url('/Terry2.jpg'); background-size: cover; background-repeat: no-repeat;"
+                                : "background: url('/self.png'); background-size: cover; background-position: center;",
 
   }
 
@@ -136,7 +142,7 @@ export default (props: Props) => {
     >
       <div class="max-w-base flex gap-4 overflow-hidden">
         <div class={`shrink-0 w-7 h-7 rounded-md op-80 ${roleClass[props.message.role]}`} />
-        <div style={`${roleClass[props.message.role]}`} class="shrink-0 w-15 h-15 rounded-md op-80" />
+        <div style={`${roleClass[props.message.role]}`} class="shrink-0 w-12 h-12 rounded-md op-80" />
         <div id="menuList-wrapper" class={`sm:hidden block absolute bottom-2 right-4 z-10 op-70 cursor-pointer ${isEditing() && '!hidden'}`}>
           <DropDownMenu menuList={menuList()}>
             <div class="text-xl i-carbon:overflow-menu-horizontal" />
