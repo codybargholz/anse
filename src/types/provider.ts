@@ -19,6 +19,8 @@ export interface Provider {
   handleRapidPrompt?: (prompt: string, globalSettings: SettingsPayload) => Promise<string>
   /** Handle a temporary, systemID check to determine which personality should respond, THis is used to generate the most appropriate prompt. */
   handlePromptCategory?: (prompt: string, globalSettings: SettingsPayload) => Promise<string>
+  /** Handle a temporary, name check to determine which personality should respond, THis is used to generate the most appropriate prompt. */
+  handlePromptName?: (prompt: string, globalSettings: SettingsPayload) => Promise<string>
 }
 
 export interface Bot {

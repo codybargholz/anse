@@ -44,33 +44,65 @@ export const promptCategoryHelper = {
   summarizeText: (text: string) => {
     return [
       'Your job is to review the question and determine the context of the question which persona category to activate. ',
-      'Based on the context of the input or a persona name categorize the input as Science, Medicine, History, Philosophy, Writing, Computer, Business, Engineering, Music, Economics, Yomiko, Charlie, Marvin or Other.',
+      'Based on the context of the input categorize the input as Physics, Psychology, Chemistry, Biology, Medicine, History, Philosophy, Writing, Computer, Business, Engineering, Music, Economics, or Other.',
       'The output must be one word only. Do not add any other content.',
-      'If a name is reference respond with the context category which cooresponds with that name.',
-      'Here are the names associated with each context category:',
-      'Richard Feynman: Science',
-      'Terry Wahls: Medicine',
-      'Winston Churchill: History',
-      'Dennis Ritchie: Computer',
-      'Elon Musk: Business',
-      'Shirley Taylor: Writing',
-      'Hubert "Bert" Dreyfus: Philosophy',
-      'Daniel Barenboim: Music',
-      'Charlie Day: Charlie',
-      'Marvin The Paranoid Android: Marvin',
-      'Yomiko Readman "The Paper": Yomiko',
-      'Thomas Sowell: Economics',
-      'The use of any of these names supercedes all other context information in determining the category',
-      'If any of these names are activated output the name instead of context category described above',
-      'Charlie can only be activated when the user addresses you with the name Charlie',
-      'Yomiko can only be activated when the user addresses you with the name Yomiko',
-      'Marvin can only be activated when the user addresses you with the name Marvin',
       'The input is:',
       text,
     ].join('\n')
   },
 }
 
+export const generatePromptPersonalityNamePayload = (prompt: string, providerId: string) => {
+  const payload = {
+    conversationId: 'personalityname',
+    conversationType: 'chat_single',
+    botId: 'personalityname',
+    globalSettings: getSettingsByProviderId(providerId),
+    botSettings: {},
+    prompt,
+    messages: [],
+  } as HandlerPayload
+  return payload
+}
+
+export const promptPersonalityNameHelper = {
+  summarizeText: (text: string) => {
+    return [
+      'Your job is to review the input and determine if the user is requesting a response from a particular persona.',
+      'If the question appears to want a response from a particular persona and that persona is on the list output the persona\'s first name. If no name is referenced or if names are referenced that are not on the list',
+      'output the word Flat',
+      'The output must be one word only. Do not add any other content. The output must be Flat or one of the names such as Terry',
+      'Sometimes more than one name is referenced so think carefully. Before providing the output ask yourself, which one of these names is the question addressed to?',
+      'For example if the input is: Hey Elon, what do you think about Charlie\'s response? Output Elon',
+      'Elon is being address and Charlie is the subject of conversation so clearly a response by Elon is required.',
+      'Is the input talking about this persona or addressing it with a question? Choose the persona name that is being addressed.',
+      'Here is the list of full names that are on the list and their corresponding first name outputs:',
+      '',
+      'Richard Feynman: Richard',
+      'Terry Wahls: Terry',
+      'Winston Churchill: Winston',
+      'Dennis Ritchie: Dennis',
+      'Elon Musk: Elon',
+      'Shirley Taylor: Shirley',
+      'Hubert "Bert" Dreyfus: Hubert',
+      'Daniel Barenboim: Daniel',
+      'Charlie Day: Charlie',
+      'Marvin The Paranoid Android: Marvin',
+      'Yomiko Readman "The Paper": Yomiko',
+      'Thomas Sowell: Thomas',
+      'Adam Smith: Adam',
+      'Steve Jobs: Steve',
+      'Jordan Peterson: Jordan',
+      'Leroy "Lee" Cronin: Leroy',
+      'Michael Levin: Michael',
+      'Joscha Bach: Joscha',
+      'Dan Carlin: Dan',
+      'Joe Rogan: Joe',
+      'The input is:',
+      text,
+    ].join('\n')
+  },
+}
 // export const promptCategoryHelper = {
 //   summarizeText: (text: string) => {
 //     return [

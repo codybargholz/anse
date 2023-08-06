@@ -115,21 +115,33 @@ export default (props: Props) => {
                 ? "background: url('/Sowell.jpg'); background-size: cover; background-repeat: no-repeat;"
                 : personalityName === 'Churchhill'
                   ? "background: url('/winston.png'); background-size: cover; background-repeat: no-repeat;"
-                  : personalityName === 'AdamSmith'
+                  : personalityName === 'Adam Smith'
                     ? "background: url('/adamsmith.png'); background-size: cover; background-repeat: no-repeat;"
                     : personalityName === 'Steve Jobs'
                       ? "background: url('/stevejobs.png'); background-size: cover; background-repeat: no-repeat;"
                       : personalityName === 'Dennis Ritchie'
                         ? "background: url('/dennisritchie.png'); background-size: cover; background-repeat: no-repeat;"
-                        : personalityName === 'Elon Musk'
-                          ? "background: url('/elon.png'); background-size: cover; background-repeat: no-repeat;"
-                          : personalityName === 'Hubert Dreyfus'
-                            ? "background: url('/bert.png'); background-size: cover; background-repeat: no-repeat;"
-                            : personalityName === 'Shirley Taylor'
-                              ? "background: url('/shirleytaylor.png'); background-size: cover; background-repeat: no-repeat;"
-                              : personalityName === 'Terry Wahls'
-                                ? "background: url('/Terry2.jpg'); background-size: cover; background-repeat: no-repeat;"
-                                : "background: url('/self.png'); background-size: cover; background-position: center;",
+                        : personalityName === 'Jordan'
+                          ? "background: url('/jordan.jpg'); background-size: cover; background-repeat: no-repeat;"
+                          : personalityName === 'Lee'
+                            ? "background: url('/lee.jpg'); background-size: cover; background-repeat: no-repeat;"
+                            : personalityName === 'Michael'
+                              ? "background: url('/michael.jpg'); background-size: cover; background-repeat: no-repeat;"
+                              : personalityName === 'Joscha'
+                                ? "background: url('/joscha.jpg'); background-size: cover; background-repeat: no-repeat;"
+                                : personalityName === 'Dan'
+                                  ? "background: url('/dan.jpg'); background-size: cover; background-repeat: no-repeat;"
+                                  : personalityName === 'Joe'
+                                    ? "background: url('/joe.jpg'); background-size: cover; background-repeat: no-repeat;"
+                                    : personalityName === 'Elon Musk'
+                                      ? "background: url('/elon.png'); background-size: cover; background-repeat: no-repeat;"
+                                      : personalityName === 'Hubert Dreyfus'
+                                        ? "background: url('/bert.png'); background-size: cover; background-repeat: no-repeat;"
+                                        : personalityName === 'Shirley Taylor'
+                                          ? "background: url('/shirleytaylor.png'); background-size: cover; background-repeat: no-repeat;"
+                                          : personalityName === 'Terry Wahls'
+                                            ? "background: url('/Terry2.jpg'); background-size: cover; background-repeat: no-repeat;"
+                                            : "background: url('/self.png'); background-size: cover; background-position: center;",
 
   }
 

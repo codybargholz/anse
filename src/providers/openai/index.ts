@@ -1,6 +1,7 @@
 import {
   handlePrompt,
   handlePromptCategory,
+  handlePromptName,
   handleRapidPrompt,
 } from './handler'
 import type { Provider } from '@/types/provider'
@@ -34,7 +35,7 @@ const providerOpenAI = () => {
           { value: 'gpt-4-0314', label: 'gpt-4-0314' },
           { value: 'gpt-4-32k', label: 'gpt-4-32k' },
           { value: 'gpt-4-32k-0314', label: 'gpt-4-32k-0314' },
-          { value: 'gpt-3.5-turbo-0301', label: 'gpt-3.5-turbo-0301' },
+          { value: 'gpt-3.5-turbo-16k', label: 'gpt-3.5-turbo-16k' },
         ],
         default: 'gpt-4',
       },
@@ -94,6 +95,7 @@ const providerOpenAI = () => {
     handlePrompt,
     handleRapidPrompt,
     handlePromptCategory,
+    handlePromptName,
   }
   return provider
 }
