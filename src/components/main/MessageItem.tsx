@@ -141,7 +141,9 @@ export default (props: Props) => {
                                           ? "background: url('/shirleytaylor.png'); background-size: cover; background-repeat: no-repeat;"
                                           : personalityName === 'Terry Wahls'
                                             ? "background: url('/Terry2.jpg'); background-size: cover; background-repeat: no-repeat;"
-                                            : "background: url('/self.png'); background-size: cover; background-position: center;",
+                                            : personalityName === 'Lawrence'
+                                              ? "background: url('/grant.jpg'); background-size: cover; background-repeat: no-repeat;"
+                                              : "background: url('/self.png'); background-size: cover; background-position: center;",
 
   }
 

@@ -79,6 +79,7 @@ export const promptPersonalityNameHelper = {
       'Here is the list of full names that are on the list and their corresponding first name outputs:',
       '',
       'Richard Feynman: Richard',
+      'Grant Lawrence: Grant',
       'Terry Wahls: Terry',
       'Winston Churchill: Winston',
       'Dennis Ritchie: Dennis',
