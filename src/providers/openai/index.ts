@@ -31,7 +31,7 @@ const providerOpenAI = () => {
         type: 'select',
         options: [
           { value: 'gpt-3.5-turbo', label: 'gpt-3.5-turbo' },
-          { value: 'gpt-4o', label: 'gpt-4' },
+          { value: 'gpt-4o', label: 'gpt-4o' },
           { value: 'gpt-4-turbo', label: 'gpt-4-turbo' },
         ],
         default: 'gpt-4o',
@@ -43,7 +43,7 @@ const providerOpenAI = () => {
         type: 'slider',
         min: 0,
         max: 32768,
-        default: 2048,
+        default: 4096,
         step: 1,
       },
       {
